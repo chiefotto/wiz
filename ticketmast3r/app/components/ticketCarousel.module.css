@@ -1,0 +1,66 @@
+.wrapper {
+  width: 100%;
+  margin-top: -15;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.addBtn {
+  height: 1px;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: right;
+
+  border: none;
+  color: white;
+
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.scroller {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 8px 14px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-left: 14px;
+  scroll-padding-right: 14px;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.snapItem {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+/* If your MainCard is narrower than full width,
+     you can change 100% to something like 85%:
+     flex: 0 0 85%;
+  */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px;
+}
+
+.hint {
+  font-size: 12px;
+  opacity: 0.7;
+}

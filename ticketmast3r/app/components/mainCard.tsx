@@ -1,10 +1,10 @@
 "use client";
 import styles from "./ticketpage.module.css";
 import { InputText } from "primereact/inputtext";
-import TicketDatePicker from "./datePicker";
 import { useState } from "react";
-import { Dropdown } from "primereact/dropdown";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { getGameInfoForToday } from "./mainText";
+import { gamesData } from "./wizardsSchedule";
 
 export function MainCard() {
   const [showLoader, setShowLoader] = useState(false);
@@ -17,46 +17,35 @@ export function MainCard() {
     setShowLoader(false);
   };
   const fields = ["SEC", "ROW", "SEAT"];
-  const [selectedTeam, setSelectedTeam] = useState("");
-  const teams: string[] = [
-    "Bucks",
-    "Bulls",
-    "Cavaliers",
-    "Celtics",
-    "Clippers",
-    "Grizzlies",
-    "Hawks",
-    "Heat",
-    "Hornets",
-    "Jazz",
-    "Kings",
-    "Knicks",
-    "Lakers",
-    "Magic",
-    "Mavericks",
-    "Nets",
-    "Nuggets",
-    "Pacers",
-    "Pelicans",
-    "Pistons",
-    "Raptors",
-    "Rockets",
-    "76ers",
-    "Spurs",
-    "Suns",
-    "Thunder",
-    "Timberwolves",
-    "Trail Blazers",
-    "Warriors",
-    "Wizards",
-  ];
+
+  // Then call this whenever you need it
+
+  const todayGame = getGameInfoForToday(gamesData);
+  console.log(todayGame);
 
   return (
     <div className={styles.main}>
       <div className={styles.ticketCard} style={{ color: "white" }}>
-        <p className={styles.adult}> Adult</p>
+        {/* <p className={styles.adult}> Adult</p> */}
 
         <div className={styles.ticketInfoSection}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+
+              whiteSpace: "nowrap", // keep everything on one line
+
+              // marginTop: -10,
+              paddingBottom: 30,
+              marginTop: -30,
+            }}
+          >
+            {" "}
+            <p className={styles.adult}> Verified Resale Ticket</p>
+          </div>
+
           <div className={styles.ticketInfoRow}>
             {fields.map((label) => (
               <div key={label} className={styles.ticketInfoColumn}>
@@ -78,18 +67,12 @@ export function MainCard() {
 
         <div
           className={styles.ticketBody}
-          //   style={{ backgroundImage: "url('/cap1bannerwiz2.png')" }}
-          style={{ backgroundImage: "url('/wizbannernew.png')" }}
+          style={{ backgroundImage: "url('/cap1bannerwiz2.png')" }}
+          // style={{ backgroundImage: "url('/wizbanner.png')" }}
         >
           {/* <div className="justify-center mb-3" style={{ fontSize: "20px" }}> */}
           <div className={styles.matchup}>
-            Wizards vs.<span> </span>
-            <Dropdown
-              value={selectedTeam}
-              options={teams}
-              onChange={(e: { value: any }) => setSelectedTeam(e.value)}
-              //   className={selectedTeam ? "p-dropdown-trigger" : " "}
-            />
+            Wizards vs {todayGame?.awayTeam || "no game"}
           </div>
           <div
             style={{
@@ -102,53 +85,19 @@ export function MainCard() {
               gap: 4,
             }}
           >
-            {/* Day abbrev */}
-            <InputText
-              className="p-inputtext-sm"
-              placeholder="Sat,"
-              style={{
-                width: "4ch", // just wide enough for "Sat,"
-                background: "transparent",
-                boxShadow: "none",
-                color: "#fff",
-                textAlign: "right",
-              }}
-            />
-            {/* Date from your TicketDatePicker */}
-            <span>
-              <TicketDatePicker />
-            </span>
-            {/* Time */}
-            <InputText
-              className="p-inputtext-sm"
-              placeholder="18:00"
-              style={{
-                width: "5ch", // just wide enough for "18:00"
-                marginRight: "1px",
-                border: "none",
-                background: "transparent",
-                boxShadow: "none",
-                color: "#fff",
-                textAlign: "left",
-              }}
-            />
-            <span>•</span>
-
-            {/* Dot + arena */}
-            <span
-              style={{
-                marginLeft: "1px",
-              }}
-            >
-              {" "}
-              Capital One Arena
-            </span>
+            {todayGame?.day}
+            <span>,</span>
+            {todayGame?.month} {todayGame?.dayDate}, {todayGame?.year},
+            <span>·</span>
+            {todayGame?.time}
+            <span>·</span>
+            {todayGame?.loc}
           </div>
         </div>
         <div>
           <>
             <img
-              src="/hqview.png" // assuming in /public
+              src="/hqview2.png" // assuming in /public
               alt="High Quality View"
               onClick={handleImageClick}
               style={{ cursor: "pointer", width: "100%", display: "block" }}
