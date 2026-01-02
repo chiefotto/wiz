@@ -1,6 +1,26 @@
-.wrapper {
+/* .wrapper {
   width: 100%;
   margin-top: -15;
+} */
+
+.wrapper {
+  position: relative;
+  margin-top: -21;
+}
+
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 1000;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  font-size: 28px;
+  font-weight: 900;
+  cursor: pointer;
 }
 
 .headerRow {

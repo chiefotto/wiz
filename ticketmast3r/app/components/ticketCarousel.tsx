@@ -32,7 +32,7 @@ export default function TicketCarousel() {
 
   return (
     <section className={styles.wrapper}>
-      <button
+      {/* <button
         type="button"
         className={styles.addBtn}
         onClick={addTicket}
@@ -40,7 +40,7 @@ export default function TicketCarousel() {
         title="Add ticket"
       >
         here
-      </button>
+      </button> */}
 
       <div className={styles.scroller} ref={scrollerRef}>
         {tickets.map((t) => (
@@ -50,6 +50,15 @@ export default function TicketCarousel() {
           </div>
         ))}
       </div>
+
+      <button
+        type="button"
+        className={styles.fab}
+        onClick={addTicket}
+        aria-label="Add ticket"
+      >
+        +
+      </button>
 
       {/* <div className={styles.dots} aria-hidden="true">
         {/* optional hint, can remove */}

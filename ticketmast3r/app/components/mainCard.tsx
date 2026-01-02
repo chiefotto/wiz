@@ -67,8 +67,8 @@ export function MainCard() {
 
         <div
           className={styles.ticketBody}
-          style={{ backgroundImage: "url('/cap1bannerwiz2.png')" }}
-          // style={{ backgroundImage: "url('/wizbanner.png')" }}
+          // style={{ backgroundImage: "url('/cap1bannerwiz2.png')" }}
+          style={{ backgroundImage: "url('/wizbanner2.png')" }}
         >
           {/* <div className="justify-center mb-3" style={{ fontSize: "20px" }}> */}
           <div className={styles.matchup}>
